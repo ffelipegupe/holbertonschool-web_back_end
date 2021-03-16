@@ -11,7 +11,3 @@ def make_multiplier(multiplier: float) -> typing.Callable[[float], float]:
         """ Helper function """
         return float * multiplier
     return func
-
-print(make_multiplier.__annotations__)
-fun = make_multiplier(2.22)
-print("{}".format(fun(2.22)))
