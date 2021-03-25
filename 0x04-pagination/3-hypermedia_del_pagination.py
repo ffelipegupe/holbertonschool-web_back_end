@@ -41,8 +41,8 @@ class Server:
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
             """ get index even if rows are deleted """
-        assert type(page) == int and page > 0
-        assert type(page_size) == int and page_size > 0
+        assert type(index) == int and type(page_size) == int
+        assert 0 <= index < len(self.indexed_dataset())
 
         data = []
         next = index + page_size
