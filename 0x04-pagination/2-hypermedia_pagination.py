@@ -2,7 +2,7 @@
 """ Hyperemedia pagination """
 import math
 import csv
-from typing import Dict, Any List
+from typing import Dict, Any, List
 
 
 index_range = __import__('0-simple_helper_function').index_range
@@ -44,7 +44,7 @@ class Server:
         assert type(page) == int and page > 0
         assert type(page_size) == int and page_size > 0
 
-                total_pages = math.ceil(len(self.dataset()) / page_size)
+        total_pages = math.ceil(len(self.dataset()) / page_size)
         return {'page_size': len(self.get_page(page, page_size)),
                 'page': page,
                 'data': self.get_page(page, page_size),
