@@ -2,10 +2,9 @@
 """
 Deletion-resilient hypermedia pagination
 """
-
 import csv
 import math
-from typing import List
+from typing import List, Dict
 
 
 class Server:
@@ -40,7 +39,7 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
-            """ get index even if rows are deleted """
+        """ get index even if rows are deleted """
         assert type(index) == int and type(page_size) == int
         assert 0 <= index < len(self.indexed_dataset())
 
