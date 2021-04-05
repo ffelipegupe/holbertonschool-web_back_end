@@ -55,18 +55,23 @@ class BasicAuth(Auth):
         """ Method that returns the User instance
             based on his email and password
         """
-        if not user_email or not isinstance(user_email, str) \
-           or not user_pwd or not isinstance(user_pwd, str):
+        if user_email is None or type(user_email) is not str or \
+           user_pwd is None or type(user_pwd) is not str:
             return None
-        users = User.search({'email': user_email})
-        if not users:
+
+        try:
+            users = User.search({'email': user_email})
+        except KeyError:
             return None
+
         if len(users) == 0:
             return None
-        for user in users:
-            if user.is_valid_password(user_pwd):
-                return user
-        return None
+
+        user = users[0]
+        if not user.is_valid_password(user_pwd):
+            return None
+
+        return user
 
     def current_user(self, request=None) -> TypeVar('User'):
         """ Method that overloads Auth and
