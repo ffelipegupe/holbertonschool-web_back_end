@@ -20,7 +20,7 @@ def login():
         return jsonify({"error": "email missing"}), 400
     if not password:
         return jsonify({"error": "password missing"}), 400
-    
+
     user = User.search({'email': email})
     if not user:
         return jsonify({"error": "no user found for this email"}), 404
@@ -34,8 +34,9 @@ def login():
         else:
             return jsonify({"error": "wrong password"}), 401
 
+
 @app_views.route('/api/v1/auth_session/logout', methods=['DELETE'],
-                strict_slashes=False)
+                 strict_slashes=False)
 def logout() -> str:
     """ DELETE /api/v1/auth_session/logout
     Return:
