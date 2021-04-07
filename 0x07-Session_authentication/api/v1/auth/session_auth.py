@@ -9,6 +9,7 @@ from models.user import User
 class SessionAuth(Auth):
     """ Session Auth class """
     user_id_by_session_id = {}
+
     def create_session(self, user_id: str = None) -> str:
         """ Method that creates a Session ID for a user_id
         """
@@ -37,13 +38,13 @@ class SessionAuth(Auth):
         """
         if request is None:
             return False
-        
+
         session_id = self.session_cookie(request)
 
         if not session_id:
             return False
         if not self.user_id_for_session_id(session_id):
             return False
-        
+
         del self.user_id_by_session_id[session_id]
         return True
