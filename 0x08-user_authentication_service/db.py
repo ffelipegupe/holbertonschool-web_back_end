@@ -11,7 +11,7 @@ from user import Base, User
 
 
 class DB:
-    """ Definition of DB class 
+    """ Definition of DB class
     """
 
     def __init__(self) -> None:
