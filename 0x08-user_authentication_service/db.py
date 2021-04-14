@@ -57,7 +57,7 @@ class DB:
                 raise InvalidRequestError
 
         res = self._session.query(User).filter_by(**kwargs).first()
-        if res is None:
+        if not res:
             raise NoResultFound
 
         return res
