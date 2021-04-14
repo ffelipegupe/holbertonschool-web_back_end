@@ -45,4 +45,19 @@ class DB:
             first row found in the users table as filtered by the method’s
             input arguments.
         """
-        return self._session.query(User).filter_by(**kwargs).first()
+        keys = [
+            'id',
+            'email',
+            'hashed_password',
+            'session_id',
+            'reset_token']
+
+        for k in kwargs.keys():
+            if k not in keys:
+                raise InvalidRequestError
+        
+        res = self._session.query(User).filter_by(**kwargs).first()
+        if res is None:
+            raise NoResultFound
+        
+        return res
