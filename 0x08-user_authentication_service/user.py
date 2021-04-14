@@ -5,6 +5,7 @@ from sqlalchemy import Column, Integer, String
 
 Base = declarative_base()
 
+
 class User(Base):
     """ SQLAlchemy model named User for a database table named users
 
