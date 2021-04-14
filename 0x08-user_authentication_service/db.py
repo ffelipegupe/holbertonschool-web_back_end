@@ -45,7 +45,7 @@ class DB:
             first row found in the users table as filtered by the method’s
             input arguments.
         """
-        keys = [
+        u_keys = [
             'id',
             'email',
             'hashed_password',
@@ -53,7 +53,7 @@ class DB:
             'reset_token']
 
         for k in kwargs.keys():
-            if k not in keys:
+            if k not in u_keys:
                 raise InvalidRequestError
 
         res = self._session.query(User).filter_by(**kwargs).first()
