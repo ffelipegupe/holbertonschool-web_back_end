@@ -61,9 +61,8 @@ class DB:
         src = self.find_user_by(id=user_id)
 
         for key, val in kwargs.items():
-            if hasattr(user_to_update, key):
-                setattr(user_to_update, key, val)
-            else:
+            if not hasattr(src, key):
                 raise ValueError
+            setattr(src, key, val)             
 
         self._session.commit()
