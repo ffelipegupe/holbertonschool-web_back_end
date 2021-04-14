@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""DB module
+""" Module of class DB
 """
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -11,7 +11,7 @@ from user import Base, User
 
 
 class DB:
-    """DB class
+    """ Definition of DB class 
     """
 
     def __init__(self) -> None:
