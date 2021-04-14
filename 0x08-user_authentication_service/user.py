@@ -6,6 +6,15 @@ from sqlalchemy import Column, Integer, String
 Base = declarative_base()
 
 class User(Base):
+    """ SQLAlchemy model named User for a database table named users
+
+        The model will have the following attributes:
+
+        id, the integer primary key
+        email, a non-nullable string
+        hashed_password, a non-nullable string
+        session_id, a nullable string
+        reset_token, a nullable string """
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
@@ -13,8 +22,3 @@ class User(Base):
     hashed_password = Column(String(250), nullable=False)
     session_id = Column(String(250))
     reset_token = Column(String(250))
-
-print(User.__tablename__)
-
-for column in User.__table__.columns:
-    print("{}: {}".format(column, column.type))
