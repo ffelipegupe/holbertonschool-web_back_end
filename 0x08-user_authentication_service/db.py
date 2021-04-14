@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-""" Module of class DB
-"""
+""" Module of class DB """
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -11,12 +10,10 @@ from user import Base, User
 
 
 class DB:
-    """ Definition of DB class
-    """
+    """ Definition of DB class """
 
     def __init__(self) -> None:
-        """Initialize a new DB instance
-        """
+        """ Initialize a new DB instance for the ORM """
         self._engine = create_engine("sqlite:///a.db", echo=False)
         Base.metadata.drop_all(self._engine)
         Base.metadata.create_all(self._engine)
@@ -30,18 +27,14 @@ class DB:
         return self.__session
 
     def add_user(self, email: str, hashed_password: str) -> User:
-        """ Method that saves the user to the database.
-        """
+        """ Method that saves the user to the database. """
         user = User(email=email, hashed_password=hashed_password)
         self._session.add(user)
         self._session.commit()
         return user
 
     def find_user_by(self, **kwargs) -> User:
-        """ This method takes in arbitrary keyword arguments and returns the
-            first row found in the users table as filtered by the method’s
-            input arguments.
-        """
+        """ Method that finds a User taking in kwargs"""
         if not kwargs:
             raise InvalidRequestError
 
@@ -52,9 +45,7 @@ class DB:
         return res
 
     def update_user(self, user_id: int, **kwargs) -> None:
-        """ Method that takes as argument a required user_id integer and
-            arbitrary keyword arguments, and returns None.
-        """
+        """ Method that updates a User """
         src = self.find_user_by(id=user_id)
 
         for key, val in kwargs.items():
