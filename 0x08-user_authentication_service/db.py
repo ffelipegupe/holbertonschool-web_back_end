@@ -45,16 +45,8 @@ class DB:
             first row found in the users table as filtered by the method’s
             input arguments.
         """
-        u_keys = [
-            'id',
-            'email',
-            'hashed_password',
-            'session_id',
-            'reset_token']
-
-        for k in kwargs.keys():
-            if k not in u_keys:
-                raise InvalidRequestError
+        if not kwargs:
+            raise InvalidRequestError
 
         res = self._session.query(User).filter_by(**kwargs).first()
         if not res:
