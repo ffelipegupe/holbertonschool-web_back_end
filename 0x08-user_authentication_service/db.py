@@ -53,3 +53,17 @@ class DB:
             raise NoResultFound
 
         return res
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """ Method that takes as argument a required user_id integer and
+            arbitrary keyword arguments, and returns None.
+        """
+        src = self.find_user_by(id=user_id)
+
+        for key, val in kwargs.items():
+            if hasattr(user_to_update, key):
+                setattr(user_to_update, key, val)
+            else:
+                raise ValueError
+
+        self._session.commit()
