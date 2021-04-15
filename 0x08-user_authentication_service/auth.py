@@ -85,3 +85,12 @@ class Auth:
             return tkn
         except NoResultFound:
             raise ValueError
+
+    def update_password(self, reset_token: str, password: str) -> None:
+        """ Method that updates user's password """
+        try:
+            src = self._db.find_user_by(reset_token=reset_token)
+            psw = _hash_password(password)
+            self.db.update_user(src.id, hashed_password=psw, reset_token=None)
+        except NoResultFound:
+            raise ValueError
