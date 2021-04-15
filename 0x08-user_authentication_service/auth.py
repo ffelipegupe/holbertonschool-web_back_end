@@ -91,6 +91,6 @@ class Auth:
         try:
             src = self._db.find_user_by(reset_token=reset_token)
             psw = _hash_password(password)
-            self.db.update_user(src.id, hashed_password=psw, reset_token=None)
+            self._db.update_user(src.id, hashed_password=psw, reset_token=None)
         except NoResultFound:
             raise ValueError
