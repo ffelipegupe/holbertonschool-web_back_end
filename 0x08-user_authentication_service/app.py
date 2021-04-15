@@ -77,11 +77,11 @@ def get_reset_password_token():
 def update_password():
     """ Method that updates user's password """
     email = request.form.get("email")
-    tkn = request.form.get("reset_token")
-    new_pwd = request.form.get("new_password")
+    reset_token = request.form.get("reset_token")
+    new_password = request.form.get("new_password")
 
     try:
-        AUTH.update_password(tkn, new_pwd)
+        AUTH.update_password(reset_token, new_password)
     except Exception:
         abort(403)
 
