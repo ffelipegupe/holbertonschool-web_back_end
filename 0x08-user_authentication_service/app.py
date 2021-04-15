@@ -81,8 +81,6 @@ def update_password():
     new_pwd = request.form.get("new_password")
 
     try:
-        session = AUTH.create_session(email)
-        src = AUTH.get_user_from_session_id(session)
         AUTH.update_password(tkn, new_pwd)
     except Exception:
         abort(403)
