@@ -10,6 +10,7 @@ import unittest
 
 class TestGithubOrgClient(unittest.TestCase):
     """ client test class """
+
     @parameterized.expand([
         ("google"),
         ("abc"),
