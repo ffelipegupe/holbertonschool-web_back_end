@@ -39,6 +39,7 @@ class TestGetJson(unittest.TestCase):
         class_mock.return_value = test_payload
         self.assertEquals(get_json(test_url), test_payload)
 
+
 class TestMemoize(unittest.TestCase):
     """ memoize test class """
     def test_memoize(self, ):
