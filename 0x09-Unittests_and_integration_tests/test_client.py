@@ -20,5 +20,4 @@ class TestGithubOrgClient(unittest.TestCase):
         gc = GithubOrgClient(org_name)
         gc.org()
         mock_json.assert_called_once_with(
-            f"https://api.github.com/orgs/{org_name}"
-            )
+            f"https://api.github.com/orgs/{org_name}")
