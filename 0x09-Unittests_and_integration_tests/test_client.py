@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """ client.py test module """
-from unittest.mock import Mock, patch, PropertyMock
-from client import GithubOrgClient
-from parameterized import parameterized
-from unittest import mock
 import unittest
+from client import GithubOrgClient
+from unittest.mock import patch, Mock, PropertyMock, call
+from unittest import mock
+from parameterized import parameterized, parameterized_class
 from fixtures import TEST_PAYLOAD
 import requests
 
@@ -107,4 +107,3 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         self.assertEqual(y.public_repos("apache-2.0"), self.apache2_repos)
         self.get.assert_has_calls([call("https://api.github.com/orgs/x"),
                                    call(self.org_payload["repos_url"])])
-
