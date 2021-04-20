@@ -4,7 +4,7 @@ from unittest.mock import Mock, patch, PropertyMock
 from client import GithubOrgClient
 from parameterized import parameterized
 from unittest import mock
-import 
+from fixtures import TEST_PAYLOAD
 import requests
 
 
