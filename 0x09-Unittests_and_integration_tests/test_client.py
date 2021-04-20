@@ -44,3 +44,13 @@ class TestGithubOrgClient(unittest.TestCase):
             self.assertEqual(res, ["google", "abc"])
             mock_get_json.assert_called_once()
             mock_public.assert_called_once()
+
+    @parameterized.expand([
+        ({"license": {"key": "my_license"}}, "my_license", True),
+        ({"license": {"key": "other_license"}}, "my_license", False)
+    ])
+    def test_has_license(self, repo, license, expected):
+        """ Method that tests has_license function """
+        git_client = GithubOrgClient("facebook")
+        res = (git_client.has_license(repo, license))
+        self.assertEqual(res, expected)
