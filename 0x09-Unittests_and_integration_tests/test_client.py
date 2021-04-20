@@ -6,7 +6,7 @@ from client import GithubOrgClient
 from parameterized import parameterized
 from unittest import mock
 import unittest
-from client import get_json
+from utils import get_json
 
 
 class TestGithubOrgClient(unittest.TestCase):
