@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ Basic Flask app """
-from flask import Flask, render_template
+from flask import Flask, render_template, g, request
 from flask_babel import Babel
 
 
@@ -16,13 +16,20 @@ class Config:
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
-app.config.from_object('1-app.Config')
+app.config.from_object('2-app.Config')
 
 
 @app.route("/", methods=['GET'], strict_slashes=False)
 def index() -> str:
     """ Home rendering """
-    return render_template("1-index.html")
+    return render_template("2-index.html")
+
+
+@babel.localeselector
+def get_locale():
+    """ Function to determine the best match with our supported languages.
+    """
+    return request.accept_languages.best_match(['en', 'fr'])
 
 
 if __name__ == '__main__':
